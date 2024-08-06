@@ -1,5 +1,5 @@
 {
-  "name": "@ebarooni/capacitor-calendar",
+  "name": "@west-co/capacitor-calendar-plugin",
   "version": "6.6.0",
   "description": "The Capacitor Calendar Plugin enables full calendar functionality on iOS and Android, with added reminder support for iOS devices.",
   "main": "dist/plugin.cjs.js",
