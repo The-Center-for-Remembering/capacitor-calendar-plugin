@@ -431,11 +431,20 @@ public class CapacitorCalendar: NSObject, EKEventEditViewDelegate, EKCalendarCho
 
     public func listEventsInRange(
         startDate: Double,
-        endDate: Double
+        endDate: Double,
+        calendarIDs: [String]? = nil
     ) throws -> [[String: Any]] {
+        var calendars: [EKCalendar]? = nil
+        if let ids = calendarIDs {
+            calendars = ids.compactMap { id in
+                return eventStore.calendar(withIdentifier: id)
+            }
+        }
+        
         let predicate = eventStore.predicateForEvents(
             withStart: Date(timeIntervalSince1970: startDate / 1000),
-            end: Date(timeIntervalSince1970: endDate / 1000), calendars: nil
+            end: Date(timeIntervalSince1970: endDate / 1000),
+            calendars: calendars
         )
         let events = self.eventStore.events(matching: predicate)
         return dictionaryRepresentationOfEvents(events: events)

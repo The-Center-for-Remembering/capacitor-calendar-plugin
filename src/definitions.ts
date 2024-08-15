@@ -362,6 +362,7 @@ export interface CapacitorCalendarPlugin {
    * @param {object} options Options for defining the date range.
    * @param {number} options.startDate The start of the date range.
    * @param {number} options.endDate The end of the date range.
+   * @param {string[]} options.calendarIds Optional list of calendar IDs to filter on.
    * @returns {Promise<{ result: CalendarEvent[] }>} A Promise that resolves with the list of events.
    * @example
    * const { result } = await CapacitorCalendar.listEventsInRange({
@@ -372,6 +373,7 @@ export interface CapacitorCalendarPlugin {
   listEventsInRange(options: {
     startDate: number;
     endDate: number;
+    calendarIds?: string[];
   }): Promise<{ result: CalendarEvent[] }>;
 
   /**

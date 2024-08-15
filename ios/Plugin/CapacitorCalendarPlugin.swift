@@ -432,8 +432,10 @@ public class CapacitorCalendarPlugin: CAPPlugin {
             return
         }
 
+        let calendarIDs = call.getArray("calendarIDs", String.self)
+        
         do {
-            try call.resolve(["result": calendar.listEventsInRange(startDate: startDate, endDate: endDate)])
+            try call.resolve(["result": calendar.listEventsInRange(startDate: startDate, endDate: endDate, calendarIDs: calendarIDs)])
         } catch {
             call.reject("[CapacitorCalendar.\(#function)] Could not get the list of events in requested range")
             return

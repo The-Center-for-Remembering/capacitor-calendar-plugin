@@ -139,6 +139,7 @@ export class CapacitorCalendarWeb
   public listEventsInRange(_options: {
     startDate: number;
     endDate: number;
+    calendarIds?: string[];
   }): Promise<{ result: CalendarEvent[] }> {
     throw this.unimplemented(
       `${this.listEventsInRange.name} is not implemented on the web`,
