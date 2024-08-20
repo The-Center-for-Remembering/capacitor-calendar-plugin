@@ -431,8 +431,8 @@ public class CapacitorCalendarPlugin: CAPPlugin {
             call.reject("[CapacitorCalendar.\(#function)] An end date was not provided")
             return
         }
-
-        let calendarIDs = call.getArray("calendarIDs", String.self)
+        
+        let calendarIDs = call.getArray("calendarIds", String.self)
         
         do {
             try call.resolve(["result": calendar.listEventsInRange(startDate: startDate, endDate: endDate, calendarIDs: calendarIDs)])
