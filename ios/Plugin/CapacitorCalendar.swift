@@ -435,16 +435,17 @@ public class CapacitorCalendar: NSObject, EKEventEditViewDelegate, EKCalendarCho
         calendarIDs: [String]? = nil
     ) throws -> [[String: Any]] {
         var calendars: [EKCalendar]? = nil
-        if let ids = calendarIDs {
-            if ids.isEmpty {
-                return []
-            } else {
-                calendars = ids.compactMap { id in
-                    return eventStore.calendar(withIdentifier: id)
-                }
-            }
-        }
         
+        if let ids = calendarIDs {
+            calendars = ids.compactMap { id in
+                return eventStore.calendar(withIdentifier: id)
+            }
+            
+            if let calendars = calendars, calendars.isEmpty {
+                return []
+            }
+            
+        }
         
         let predicate = eventStore.predicateForEvents(
             withStart: Date(timeIntervalSince1970: startDate / 1000),
